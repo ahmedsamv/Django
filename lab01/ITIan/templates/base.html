@@ -1,0 +1,42 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {%block title%}
+            Parent Page
+        {%endblock%}
+    </title>
+     <link rel="stylesheet" href="{%static 'css/style.css' %}">
+    <script src="{%static 'js/index.js'%}"></script>
+</head>
+<body>
+<table width="100%" hieght="100%">
+    <tr>
+        <td colspan="9">
+            <h1>Header</h1>
+        </td>
+    </tr>
+     <tr>
+         <td colspan="7">
+            <h1>content</h1>
+             {%block content%}
+             content
+             {%endblock%}
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="9">
+            <h1>footer</h1>
+        </td>
+    </tr>
+
+</table>
+
+</body>
+</html>
+ {%block js%}
+
+{%endblock%}
