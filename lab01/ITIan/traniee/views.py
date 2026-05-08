@@ -45,3 +45,13 @@ def gettranieebyid(request,id):
     return render(request,'trainee/tranieedetails.html',context)
 
 
+def Hardtranieedelete(request,id):
+  
+    if (Traniee.objects.filter(pk=id) ):
+        
+        Traniee.objects.filter(id=id).delete()
+    
+        return redirect('traineelist')
+    # else:
+    else:
+        return render(request,'trainee/list.html',context={'error':'traniee not found'})

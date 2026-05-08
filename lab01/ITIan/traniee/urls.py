@@ -8,5 +8,6 @@ path('delete/<int:id>/', deletetrainee, name='deletetrainee'),
 path('home/', home, name='home'),
 path('<int:id>/', gettranieebyid, name='traniee_get'),
 
+path('HDelete/<int:id>/',Hardtranieedelete,name='HTraniee_delete'),
 
 ]
