@@ -6,16 +6,16 @@ New Traniee
     <form method="post" enctype="multipart/form-data">
         {%csrf_token%}
         <label>ID</label>
-        <input type="number" name="tid" >
+        <input type="number" name="tid" required >
         </br>
         <label>Name</label>
-        <input type="text" name="tname" maxlength="100">
+        <input type="text" name="tname" maxlength="100" required>
         </br>
         <label>trainee email</label>
-        <input type="email"  name="temail" >
+        <input type="email"  name="temail" required>
         </br>
         <label>trainee fees:</label>
-        <input type="number" name="fees" >
+        <input type="number" name="fees" required>
         </br>
      
         <input type="submit" value ='add'>

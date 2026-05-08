@@ -4,9 +4,10 @@ table{
      text-align: center;
      border: 1px solid;
     }
+
+
 h1{ 
-    color: blue;
-}
+   color: blue;}
 
 td{
     border: 1px solid;
@@ -15,4 +16,10 @@ tr
 {
     border: 1px solid;
 }
+
+th{
+    background-color: lightgrey;
+}
+
+
 
