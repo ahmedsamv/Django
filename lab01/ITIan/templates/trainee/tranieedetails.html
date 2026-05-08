@@ -1,32 +1,28 @@
 {%extends 'base.html'%}
 {%block title %}
-Traniee List
+Traniee Details
 {%endblock%}
  {%block content%}
-<div style="color : red">
-    {{error }}
-</div>
 <table border="1px solid" width="100%" height="100%">
     <tr>
         <th>ID</th>
-        <th>name</th>
-        <th>email</th>
-        <th>fees</th>
- 
+        <th>Name</th>
+        <th>Email</th>
+        <th>Fees</th>
+    
+
     </tr>
-    {%for traniee in traniees%}
+
         <tr>
             <td>{{traniee.id}}</td>
             <td>{{traniee.name}}</td>
             <td>{{traniee.email}}</td>
             <td>{{traniee.fees}}</td>
+           
 
-                <td>
-               <a href="{%url 'traniee_get' traniee.id %}">details</a>
-            </td>
 
         </tr>
-    {%endfor%}
+
 </table>
 
 

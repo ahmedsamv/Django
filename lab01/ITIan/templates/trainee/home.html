@@ -1,0 +1,24 @@
+{%extends 'base.html'%}
+{%block title %}
+New Traniee 
+{%endblock%}
+ {%block content%}
+    <form method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        <label>ID</label>
+        <input type="number" name="tid" >
+        </br>
+        <label>Name</label>
+        <input type="text" name="tname" maxlength="100">
+        </br>
+        <label>trainee email</label>
+        <input type="email"  name="temail" >
+        </br>
+        <label>trainee fees:</label>
+        <input type="number" name="fees" >
+        </br>
+     
+        <input type="submit" value ='add'>
+    </form>
+
+{%endblock%}
