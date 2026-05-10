@@ -5,7 +5,7 @@ New Traniee
  {%block content%}
     <form method="post" enctype="multipart/form-data">
         {%csrf_token%}
-        <label>ID</label>
+        <!-- <label>ID</label>
         <input type="number" name="tid" required >
         </br>
         <label>Name</label>
@@ -15,7 +15,9 @@ New Traniee
         <input type="email"  name="temail" required>
         </br>
         <label>trainee fees:</label>
-        <input type="number" name="fees" required>
+        <input type="number" name="fees" required> -->
+
+        {{form.as_p}}
         </br>
      
         <input type="submit" value ='add'>

@@ -1,7 +1,10 @@
 from django.shortcuts import render,redirect
 from django.http.response import HttpResponse,HttpResponseRedirect
 from pip._internal import req
+
 from .models import *
+
+from .forms import *
 
 # Create your views here.
 
@@ -27,17 +30,29 @@ def deletetrainee(request,id):
 
 
 def home(request):
+    context = {'course': Course.objects.all(),'form':TranieeForm()}
         # return HttpResponse(f'<h1>book add</h1>')
     if request.method == 'POST':
 
-        Traniee.objects.create(
-            id=request.POST['tid'],
-            name=request.POST['tname'],
-            email=request.POST['temail'],
-            fees=request.POST['fees'],
-        )
+        form=TranieeModelForm(data=request.POST,files=request.FILES)
+        if(form.is_valid()):
+            form.save()
+            # Traniee.objects.create(
+            #     id=request.POST['id'],
+            #     name=request.POST['name'],
+            #     email=request.POST['email'],
+            #     fees=request.POST['fees'],
+            #     Traniee_image=request.FILES.get("Traniee_image"),
+            #     Course=Course.objects.get(pk=request.POST['Course'])
+            # ) 
+        # Traniee.objects.create(
+        #     id=request.POST['tid'],
+        #     name=request.POST['tname'],
+        #     email=request.POST['temail'],
+        #     fees=request.POST['fees'],
+        # )
         return redirect ('traineelist')
-    return render (request,'trainee/home.html')
+    return render (request,'trainee/home.html',context)
 
 
 def gettranieebyid(request,id):

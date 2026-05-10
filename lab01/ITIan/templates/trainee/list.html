@@ -13,6 +13,8 @@ Traniee List
         <th>name</th>
         <th>email</th>
         <th>fees</th>
+        <th>image</th>
+        <th>course</th>
         <th>Actions</th>
  
     </tr>
@@ -22,15 +24,27 @@ Traniee List
             <td>{{traniee.name}}</td>
             <td>{{traniee.email}}</td>
             <td>{{traniee.fees}}</td>
+            <td>
+                {% if traniee.Traniee_image %}
+                <img src="{{traniee.Traniee_image.url}}" width="30%" height="30%" alt="{{traniee.name}}">
+                {% else %}
+                <p>No image uploaded.</p>
+            {% endif %}
+            </td>
+            <td>{{traniee.Course}}</td>
 
                 <td>
                <a href="{%url 'traniee_get' traniee.id %}">details</a>
              <a href="{%url 'HTraniee_delete' traniee.id %}">harddelet -delete from db</a>
-
             </td>
 
         </tr>
     {%endfor%}
+    
+<a href="{%url 'home' %}">ADD</a>   
+    
+                
+
 </table>
 
 
