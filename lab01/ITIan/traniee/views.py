@@ -11,12 +11,10 @@ from .forms import *
 
 def listtrainee(request):
     #return HttpResponse("<h1> list of traniee </h1>")
-    context={'name':'itian','traniees':Traniee.objects.all()}
+    context={'name':'itian','traniees':Traniee.objects.filter(is_active=True)}
 
     return render(request,"trainee/list.html",context)
 
-def addtrainee(request):
-    return HttpResponse("<h1> add trainee </h1>")
 
 def updatetrainee(req,id):
     context={'form':TranieeModelForm(instance=Traniee.objects.get(id=id))}
@@ -31,12 +29,14 @@ def updatetrainee(req,id):
     return render(req, 'trainee/update.html' , context)
 
 
+
 def deletetrainee(request,id):
     return HttpResponse(f"<h1> delete trainee {id} </h1>")
 
 # def home(request):
 #     Traniees = Traniee.objects.all() 
 #     return render(request,"trainee/home.html",{"Traniees":Traniees})
+
 
 
 def home(request):
@@ -80,3 +80,8 @@ def Hardtranieedelete(request,id):
     # else:
     else:
         return render(request,'trainee/list.html',context={'error':'traniee not found'})
+    
+
+def softtranieedelete(request,id):
+    Traniee.objects.filter(id=id).update(is_active=False)
+    return redirect('traineelist')

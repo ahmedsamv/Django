@@ -11,6 +11,6 @@ class Traniee(models.Model):
     update_date=models.DateTimeField(auto_now=True,verbose_name='Update Date')
     Traniee_image=models.ImageField(upload_to='trainee_cover',null=True, blank=True)
     Course=models.ForeignKey(Course,on_delete=models.CASCADE)
-
+    is_active=models.BooleanField(default=True)
     def __str__(self):
         return self.name
