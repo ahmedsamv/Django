@@ -6,6 +6,8 @@ from .models import *
 
 from .forms import *
 
+from django.views import View
+
 # Create your views here.
 
 
@@ -39,8 +41,22 @@ def deletetrainee(request,id):
 
 
 
+class newhome(View):
+        
+        context = {'course': Course.objects.all(),'form':TranieeModelForm()}
+        def get(self,request):
+           
+            return render (request,'trainee/home.html',newhome.context)
+        def post(self,request):
+            form=TranieeModelForm(data=request.POST,files=request.FILES)
+            if(form.is_valid()):
+                form.save()
+            return redirect ('traineelist')
+
+
+
 def home(request):
-    context = {'course': Course.objects.all(),'form':TranieeForm()}
+    context = {'course': Course.objects.all(),'form':TranieeModelForm()}
         # return HttpResponse(f'<h1>book add</h1>')
     if request.method == 'POST':
 
