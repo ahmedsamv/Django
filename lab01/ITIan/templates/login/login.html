@@ -7,17 +7,18 @@
 </head>
 <body>
     <h1>welcome to login home</h1>
-<form action="">
+<form method="POST">
+    {% csrf_token %}
 
-    <label for="">username</label>
-    <input type="text" name="username" id="">
-    <br>
-    <label for="">password</label>
-    <input type="password" name="password" id="">
-    <br>
-    <input type="submit" value="login">
+    {% if form.errors %}
+        <p style="color: red;">Your username and password didn't match. Please try again.</p>
+    {% endif %}
 
+    {{ form.as_p }}
+
+    <button type="submit">Log In</button>
 </form>
+
 
 
 </body>

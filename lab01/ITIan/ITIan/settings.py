@@ -129,3 +129,10 @@ STATICFILES_DIRS=['static']
 #mediaaa    
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+
+
+# when  logging in
+LOGIN_REDIRECT_URL = 'traineelist'
+
+# when logging out
+LOGOUT_REDIRECT_URL = 'login'

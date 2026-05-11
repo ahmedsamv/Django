@@ -20,6 +20,28 @@
             <h1>Header</h1>
         </td>
     </tr>
+
+    <tr>
+        <td colspan="9">
+            {% if user.is_authenticated %}
+                <p>Welcome, {{ user.username }}!</p>
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+            <a href="{%url 'home'%}">add Traninee</a>
+            
+            <a href="{%url 'traineelist'%}">traniees</a>
+            
+            <a href="/admin/">Courses</a>
+            
+        </td>
+    </tr>
+
+
      <tr>
          <td colspan="7">
             <h1>content</h1>
@@ -34,6 +56,7 @@
             <h1>footer</h1>
         </td>
     </tr>
+
 
 </table>
 
