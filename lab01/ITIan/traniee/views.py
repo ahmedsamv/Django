@@ -18,8 +18,18 @@ def listtrainee(request):
 def addtrainee(request):
     return HttpResponse("<h1> add trainee </h1>")
 
-def updatetrainee(request,id):
-    return HttpResponse(f"<h1> update trainee {id} </h1>")
+def updatetrainee(req,id):
+    context={'form':TranieeModelForm(instance=Traniee.objects.get(id=id))}
+    if req.method=='POST':
+        form=TranieeModelForm(req.POST,req.FILES,instance=Traniee.objects.get(id=id))
+        if(form.is_valid()):
+            form.save()
+            return redirect('traineelist')
+        else:
+            context['error']=form.errors
+            return render(req, 'trainee/update.html' , context)
+    return render(req, 'trainee/update.html' , context)
+
 
 def deletetrainee(request,id):
     return HttpResponse(f"<h1> delete trainee {id} </h1>")
