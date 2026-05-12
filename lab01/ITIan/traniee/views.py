@@ -7,8 +7,17 @@ from .models import *
 from .forms import *
 
 from django.views import View
+from django.views.generic import ListView,CreateView
+from django.urls import reverse_lazy
+
 
 # Create your views here.
+
+class tranieeList(ListView):
+    queryset=Traniee.objects.filter(is_active=True)
+    model=Traniee
+    template_name='trainee/list.html'
+    context_object_name='traniees'
 
 
 def listtrainee(request):
@@ -38,6 +47,14 @@ def deletetrainee(request,id):
 # def home(request):
 #     Traniees = Traniee.objects.all() 
 #     return render(request,"trainee/home.html",{"Traniees":Traniees})
+
+
+class addtraniee(CreateView):
+    model=Traniee
+    fields = ['id', 'name', 'email', 'fees', 'Traniee_image', 'Course']
+    template_name='trainee/home.html'
+    success_url=reverse_lazy('traineelist')
+
 
 
 
