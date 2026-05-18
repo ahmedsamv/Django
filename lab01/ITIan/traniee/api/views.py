@@ -14,6 +14,8 @@ from traniee.models import *
 from .serlizer import *
 from rest_framework import viewsets
 
+from course.models import Course
+
 
 
 class Tranieeviewset(viewsets.ViewSet):
@@ -58,3 +60,49 @@ class Tranieeviewset(viewsets.ViewSet):
         traniee = get_object_or_404(Traniee, pk=pk)
         traniee.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+
+
+class Courseviewset(viewsets.ViewSet):
+    def list(self,request):
+        queryset=Course.objects.all()
+        serializer=CourseSerlizer(queryset,many=True)
+        return Response(serializer.data,status=status.HTTP_200_OK)  
+    
+    def create(self,request):
+        serlizer=CourseSerlizer(data=request.data)
+        if serlizer.is_valid():
+            serlizer.save()
+            return Response(data=serlizer.data,status=status.HTTP_201_CREATED)
+        return  Response(serlizer.errors,status=status.HTTP_400_BAD_REQUEST)
+    
+    def retrieve(self,request,pk):
+        queryset=Course.objects.all()
+        course=get_object_or_404(queryset,pk=pk)
+        courseser=CourseSerlizer(course)
+        return Response(data=courseser.data,status=status.HTTP_200_OK)
+    
+    def update(self, request, pk):
+        course=get_object_or_404(Course,pk=pk)
+        serializer=CourseSerlizer(instance=course,data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        
+        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)       
+    
+    def partial_update(self,request,pk):
+        course = get_object_or_404(Course, pk=pk)
+        serializer = CourseSerlizer(instance=course, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  
+    
+    def destroy(self,request,pk):
+        course = get_object_or_404(Course, pk=pk)
+        course.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)  
