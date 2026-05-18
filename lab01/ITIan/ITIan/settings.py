@@ -38,9 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'traniee.apps.TranieeConfig',
     'course.apps.CourseConfig',
     'accounts.apps.AccountsConfig',
+    'rest_framework',
+
 ]
 
 MIDDLEWARE = [
@@ -137,3 +140,5 @@ LOGIN_REDIRECT_URL = 'traineelist'
 
 # when logging out
 LOGOUT_REDIRECT_URL = 'login'
+
+LOGIN_URL = 'login'

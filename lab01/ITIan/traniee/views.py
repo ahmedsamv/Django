@@ -10,10 +10,17 @@ from django.views import View
 from django.views.generic import ListView,CreateView
 from django.urls import reverse_lazy
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+
+
 
 # Create your views here.
 
-class tranieeList(ListView):
+
+
+
+class tranieeList(LoginRequiredMixin, ListView):
     queryset=Traniee.objects.filter(is_active=True)
     model=Traniee
     template_name='trainee/list.html'
@@ -51,7 +58,8 @@ def deletetrainee(request,id):
 
 class addtraniee(CreateView):
     model=Traniee
-    fields = ['id', 'name', 'email', 'fees', 'Traniee_image', 'Course']
+    form_class=TranieeModelForm
+    #fields = ['id', 'name', 'email', 'fees', 'Traniee_image', 'Course']
     template_name='trainee/home.html'
     success_url=reverse_lazy('traineelist')
 
