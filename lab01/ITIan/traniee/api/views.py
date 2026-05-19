@@ -13,13 +13,17 @@ from rest_framework.generics import UpdateAPIView, get_object_or_404
 from traniee.models import *
 from .serlizer import *
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
+
 
 from course.models import Course
 
 
 
 class Tranieeviewset(viewsets.ViewSet):
-    
+    permission_classes = [IsAuthenticated]
+
     def list(self,request):
         queryset=Traniee.objects.select_related('Course').all()
         serializer=TranieeSerlizer(queryset,many=True)
@@ -66,6 +70,8 @@ class Tranieeviewset(viewsets.ViewSet):
 
 
 class Courseviewset(viewsets.ViewSet):
+    permission_classes = [IsAuthenticated]
+
     def list(self,request):
         queryset=Course.objects.all()
         serializer=CourseSerlizer(queryset,many=True)
